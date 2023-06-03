@@ -7,18 +7,22 @@ const registrationValidator = [
     body('password').isLength({min: 8})
 ];
 
+const loginValidator = [
+    body('email').isEmail(),
+    body('password').isLength({min: 8})
+]
+
 const ticketCreateValidator = [
-    body('name').isEmpty(),
     body('price').isNumeric(),
     body('image').optional().isURL(),
     body('description').optional().isString(),
-    body('departureCityId').isEmpty(),
-    body('arrivalCityId').isEmpty(),
-    body('departureTime').isEmpty().isDate(),
-    body('arrivalTime').isEmpty().isDate(),
+    body('departureTime').isTime(),
+    body('arrivalTime').isTime(),
 ];
+
 
 module.exports = {
     registrationValidator,
+    loginValidator,
     ticketCreateValidator
 };

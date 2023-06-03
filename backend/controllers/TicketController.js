@@ -3,18 +3,13 @@ const {validationResult} = require("express-validator");
 
 class TicketController {
     async create(req, res) {
-        const errors = validationResult(req);
-        if (!errors.isEmpty()) {
-            return res.status(400).json(errors.array());
-        }
         try {
             const {
-                name, price, image, description, departureCityId,
+                name, price, description, departureCityId,
                 arrivalCityId, departureTime, arrivalTime
             } = req.body;
             const ticket = await Ticket.create({
-                name, price, image, description,
-                departureCityId, arrivalCityId, departureTime, arrivalTime
+                name, price, description, departureCityId, arrivalCityId, departureTime, arrivalTime
             });
             return res.json({ticket});
         } catch (e) {
@@ -23,25 +18,25 @@ class TicketController {
     }
 
     async getAll(req, res) {
-        let {departureCityId, arrivalCityId, limit, page} = req.query;
-        limit = limit || 10;
-        page = page || 1;
-        let offset = page * limit - limit;
-        let tickets;
-        if (!departureCityId && !arrivalCityId) {
-            tickets = await Ticket.findAndCountAll({limit, offset});
+        let {departureCityId, arrivalCityId} = req.query;
+        try {
+            let tickets;
+            if (!departureCityId && !arrivalCityId) {
+                tickets = await Ticket.findAndCountAll();
+            }
+            if (!departureCityId && arrivalCityId) {
+                tickets = await Ticket.findAndCountAll({where: {arrivalCityId}});
+            }
+            if (departureCityId && !arrivalCityId) {
+                tickets = await Ticket.findAndCountAll({where: {departureCityId}});
+            }
+            if (departureCityId && arrivalCityId) {
+                tickets = await Ticket.findAndCountAll({where: {departureCityId, arrivalCityId}});
+            }
+            return res.json(tickets);
+        } catch (e) {
+            return res.status(500).json({message: e.message});
         }
-        if (!departureCityId && arrivalCityId) {
-            tickets = await Ticket.findAndCountAll({where: {arrivalCityId}, limit, offset});
-        }
-        if (departureCityId && !arrivalCityId) {
-            tickets = Ticket.findAndCountAll({where: {departureCityId}, limit, offset});
-        }
-        if (departureCityId && arrivalCityId) {
-            tickets = Ticket.findAndCountAll({where: {departureCityId, arrivalCityId}, limit, offset});
-        }
-        //return res.json(page);
-        return res.json(tickets);
     }
 
     async getOne(req, res) {

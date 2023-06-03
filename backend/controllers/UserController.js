@@ -12,9 +12,10 @@ class UserController {
         try {
             let {role, name, email, password} = req.body;
             let {avatar} = req.files;
+            //let avatar = null;
             role = role || 'user';
-            let fileName = null;
-            if (avatar != null) {
+            let fileName = "default-logo.png";
+            if (avatar) {
                 fileName = uuid.v4() + avatar.name.substring(avatar.name.length - 4, avatar.name.length);
                 await avatar.mv(path.resolve(__dirname, '..', 'static', fileName));
             }
@@ -76,11 +77,14 @@ class UserController {
                     message: "User not found."
                 });
             }
-            return res.json(user);
+            return res.json({
+                user: user,
+                token: (req.headers.authorization || '').replace(/Bearer\s?/, '')
+            });
         } catch (e) {
             return res.status(500).json({
                 message: e.message,
-                token: req.headers.authorization,
+                token: (req.headers.authorization || '').replace(/Bearer\s?/, ''),
                 userId: req.userId
             });
         }

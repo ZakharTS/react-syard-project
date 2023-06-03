@@ -24,7 +24,6 @@ const start = async() => {
             }
             console.log('Server started.');
         });
-
     } catch (e) {
         console.log(e);
     }

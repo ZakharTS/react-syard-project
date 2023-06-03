@@ -21,7 +21,7 @@ const City = sequelize.define('city', {
 const Ticket = sequelize.define('ticket', {
     id: {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
     name: {type: DataTypes.STRING},
-    price: {type: DataTypes.INTEGER, allowNull: false},
+    price: {type: DataTypes.DOUBLE, allowNull: false},
     departureCityId: {
         type: DataTypes.INTEGER,
         allowNull: false,
@@ -38,8 +38,8 @@ const Ticket = sequelize.define('ticket', {
             key: 'id'
         }
     },
-    departureTime: {type: DataTypes.DATE, allowNull: false},
-    arrivalTime: {type: DataTypes.DATE, allowNull: false},
+    departureTime: {type: DataTypes.TIME, allowNull: false},
+    arrivalTime: {type: DataTypes.TIME, allowNull: false},
     description: {type: DataTypes.STRING}
 });
 
