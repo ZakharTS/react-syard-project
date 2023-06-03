@@ -1,4 +1,4 @@
-const {Ticket} = require('../models/models');
+const {Ticket, BasketTicket} = require('../models/models');
 const {validationResult} = require("express-validator");
 
 class TicketController {
@@ -65,6 +65,9 @@ class TicketController {
             }
             await Ticket.destroy({
                 where: {id}
+            });
+            await BasketTicket.destroy({
+                where: {ticketId: id}
             });
             return res.json({message: "OK"});
         } catch (e) {

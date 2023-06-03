@@ -1,8 +1,8 @@
 require('dotenv').config();
 const uuid = require('uuid');
 const path = require('path');
-const { validationResult } = require("express-validator");
-const { User, Ticket} = require("../models/models");
+const {validationResult} = require("express-validator");
+const {User, Ticket} = require("../models/models");
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
 
@@ -30,41 +30,41 @@ class UserController {
             });
 
             const token = jwt.sign({
-                id: user.id 
+                id: user.id
             }, process.env.JWT_TOKEN, {
                 expiresIn: '30d'
             });
             return res.json({user, token});
-        } catch(e) {
+        } catch (e) {
             return res.status(500).json({message: e.message});
         }
-        
+
         // res.json({message: 'ok'});
     }
 
     async login(req, res) {
         const {email, password} = req.body;
         try {
-            const user = await User.findOne({ where: { email } });
+            const user = await User.findOne({where: {email}});
             if (!user) {
                 return res.status(400).json({
                     message: 'User not found'
                 })
             }
             const passwordValid = await bcrypt.compare(password, user.password);
-            if(!passwordValid) {
+            if (!passwordValid) {
                 return res.status(400).json({
                     message: 'Not valid password'
                 });
             }
 
             const token = jwt.sign({
-                id: user.id 
+                id: user.id
             }, process.env.JWT_TOKEN, {
                 expiresIn: '30d'
             });
             return res.json({user, token});
-        } catch(e) {
+        } catch (e) {
             return res.status(500).json({message: e.message});
         }
     }
@@ -72,7 +72,7 @@ class UserController {
     async getMe(req, res) {
         try {
             const user = await User.findOne({where: {id: req.userId}});
-            if (!user)  {
+            if (!user) {
                 return res.status(404).json({
                     message: "User not found."
                 });
@@ -89,6 +89,7 @@ class UserController {
             });
         }
     }
+
     async removeOne(req, res) {
         const {id} = req.params;
         try {

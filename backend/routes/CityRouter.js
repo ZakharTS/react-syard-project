@@ -1,7 +1,7 @@
 const Router = require('express');
 const router = new Router();
 const controller = require('../controllers/CityController');
-const { cityCreateValidator } = require('../validations/validation');
+const {cityCreateValidator} = require('../validations/validation');
 const checkValidation = require('../middleware/checkValidation');
 const checkAuth = require('../middleware/checkAuth');
 const checkAdmin = require('../middleware/checkAdmin');

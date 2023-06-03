@@ -1,7 +1,6 @@
 require('dotenv').config();
 const express = require('express');
-const sequelize = require('./database'); 
-const models = require('./models/models');
+const sequelize = require('./database');
 const cors = require('cors');
 const upload = require('express-fileupload');
 const router = require('./routes/index');
@@ -14,7 +13,7 @@ app.use(express.static(path.resolve(__dirname, 'static')));
 app.use(upload({}));
 app.use('/api', router);
 
-const start = async() => {
+const start = async () => {
     try {
         await sequelize.authenticate();
         await sequelize.sync();

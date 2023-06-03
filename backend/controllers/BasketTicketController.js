@@ -3,8 +3,8 @@ const {BasketTicket, Ticket} = require('../models/models');
 class BasketTicketController {
     async create(req, res) {
         try {
-            const { userId, ticketId } = req.body;
-            const basketTicket = await BasketTicket.create({ userId, ticketId });
+            const {userId, ticketId} = req.body;
+            const basketTicket = await BasketTicket.create({userId, ticketId});
             return res.json(basketTicket);
         } catch (e) {
             return res.status(500).json({message: e.message});
@@ -13,16 +13,19 @@ class BasketTicketController {
 
     async getAll(req, res) {
         try {
-            const basketTickets = await BasketTicket.findAndCountAll({where: {userId: req.userId}, include: [
+            const basketTickets = await BasketTicket.findAndCountAll({
+                where: {userId: req.userId}, include: [
                     {
                         model: Ticket
                     }
-                ]});
+                ]
+            });
             return res.json(basketTickets);
         } catch (e) {
             return res.status(500).json({message: e.message});
         }
     }
+
     async getOne(req, res) {
         const {id} = req.params;
         try {
