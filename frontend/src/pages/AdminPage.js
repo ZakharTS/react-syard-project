@@ -1,4 +1,4 @@
-import React, {useContext, useEffect, useState} from "react";
+import React, {useContext, useState} from "react";
 import {Button, Container} from "react-bootstrap";
 import CreateTicket from "../modals/CreateTicket";
 import CreateCity from "../modals/CreateCity";
@@ -10,9 +10,12 @@ const AdminPage = observer(() => {
     const [ticketVisible, setTicketVisible] = useState(false);
     const [cityVisible, setCityVisible] = useState(false);
     const {ticket} = useContext(Context);
-    try {fetchCities().then(data => ticket.setCities(data.rows));} catch (e) {}
+    try {
+        fetchCities().then(data => ticket.setCities(data.rows));
+    } catch (e) {
+    }
     return (
-        <Container className="d-flex flex-column justify-content-center" >
+        <Container className="d-flex flex-column justify-content-center">
             <Button variant={"outline-dark"} className="mt-2" onClick={() => {
                 setTicketVisible(true);
             }

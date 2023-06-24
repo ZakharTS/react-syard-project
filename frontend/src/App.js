@@ -1,6 +1,6 @@
 import AppRouter from "./components/AppRouter";
 import {BrowserRouter} from "react-router-dom";
-import React, {useContext, useEffect, useState} from "react";
+import React, {useContext, useState} from "react";
 import AppNavbar from "./components/AppNavbar";
 import {Context} from "./index";
 import {checkAuth} from "./http/UserApi";
@@ -9,7 +9,6 @@ import {Spinner} from "react-bootstrap";
 function App() {
     const {user} = useContext(Context);
     const [isLoading, setIsLoading] = useState(true);
-
     try {
         checkAuth().then(data => {
             if (data) {
@@ -24,7 +23,7 @@ function App() {
         alert(e.response.data.message);
     }
     if (isLoading) {
-        return <Spinner animation={"grow"}/>
+        return <Spinner/>
     }
     return (
         <BrowserRouter>
@@ -33,5 +32,4 @@ function App() {
         </BrowserRouter>
     );
 }
-
 export default App;

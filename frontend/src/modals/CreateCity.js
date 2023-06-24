@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import {Button, Container, Form, Modal} from "react-bootstrap";
+import {Button, Form, Modal} from "react-bootstrap";
 import {createCity} from "../http/CityApi";
 
 const CreateCity = ({show, onHide}) => {
@@ -28,7 +28,7 @@ const CreateCity = ({show, onHide}) => {
             <Modal.Body>
                 <Form
                     value={name}
-                      onChange={e => setName(e.target.value)}>
+                    onChange={e => setName(e.target.value)}>
                     <Form.Control placeholder={"Название города"}/>
                 </Form>
             </Modal.Body>

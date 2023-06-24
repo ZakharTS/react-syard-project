@@ -1,5 +1,4 @@
 const {Ticket, BasketTicket} = require('../models/models');
-const {validationResult} = require("express-validator");
 
 class TicketController {
     async create(req, res) {

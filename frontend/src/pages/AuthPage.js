@@ -1,5 +1,5 @@
 import React, {useContext, useState} from "react";
-import {Button, Card, Container, FloatingLabel, Form, Row} from "react-bootstrap";
+import {Button, Card, Container, FloatingLabel, Form} from "react-bootstrap";
 import {NavLink, useLocation, useNavigate} from "react-router-dom";
 import {checkAuth, login, registration} from "../http/UserApi";
 import {observer} from "mobx-react-lite";

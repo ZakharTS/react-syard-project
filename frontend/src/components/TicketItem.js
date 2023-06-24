@@ -1,17 +1,12 @@
-import React, {useContext, useEffect, useState} from "react";
+import React, {useContext, useState} from "react";
 import {observer} from "mobx-react-lite";
-import {Button, Card, Col, Form, FormText, Row, Spinner} from "react-bootstrap";
+import {Button, Card, Form, Row} from "react-bootstrap";
 import {useNavigate} from "react-router-dom";
 import {Context} from "../index";
-import {
-    createBasketTicket,
-    fetchOneBasketTicketByTicketId,
-    removeOneBasketTicketByTicketId
-} from "../http/BasketApi";
+import {createBasketTicket, fetchOneBasketTicketByTicketId, removeOneBasketTicketByTicketId} from "../http/BasketApi";
 import {fetchTickets, removeOneTicket} from "../http/TicketApi";
 
 const TicketItem = observer(({curTicket}) => {
-    const navigate = useNavigate();
     const {ticket} = useContext(Context);
     const {user} = useContext(Context);
     const departureCity = ticket.cities.find(item => item.id === curTicket.departureCityId) || {};

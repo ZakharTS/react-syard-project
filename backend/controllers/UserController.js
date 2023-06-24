@@ -90,23 +90,23 @@ class UserController {
         }
     }
 
-    async removeOne(req, res) {
-        const {id} = req.params;
-        try {
-            const user = await User.findOne({
-                where: {id}
-            });
-            if (user == null) {
-                return res.status(404).json({message: "Ticket not found"});
-            }
-            await User.destroy({
-                where: {id}
-            });
-            return res.json({message: "OK"});
-        } catch (e) {
-            return res.status(500).json({message: e.message});
-        }
-    }
+    // async removeOne(req, res) {
+    //     const {id} = req.params;
+    //     try {
+    //         const user = await User.findOne({
+    //             where: {id}
+    //         });
+    //         if (user == null) {
+    //             return res.status(404).json({message: "Ticket not found"});
+    //         }
+    //         await User.destroy({
+    //             where: {id}
+    //         });
+    //         return res.json({message: "OK"});
+    //     } catch (e) {
+    //         return res.status(500).json({message: e.message});
+    //     }
+    // }
 }
 
 module.exports = new UserController();

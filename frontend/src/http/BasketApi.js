@@ -1,5 +1,4 @@
-import {$authHost, $host} from "./index";
-import jwt_decode from 'jwt-decode';
+import {$authHost} from "./index";
 
 export const createBasketTicket = async (userId, ticketId) => {
     const {data} = await $authHost.post('api/basket/', {userId, ticketId});
@@ -19,7 +18,6 @@ export const fetchOneBasketTicket = async (id) => {
 export const fetchOneBasketTicketByTicketId = async (id) => {
     try {
         const {data} = await $authHost.get('api/basket/ticket/' + id);
-        
         return data;
     } catch (e) {
         return null;
@@ -29,5 +27,6 @@ export const fetchOneBasketTicketByTicketId = async (id) => {
 export const removeOneBasketTicketByTicketId = async (id) => {
     try {
         await $authHost.delete('api/basket/ticket/' + id);
-    } catch (e) {}
+    } catch (e) {
+    }
 }

@@ -1,10 +1,7 @@
 import React, {useContext} from "react";
-import {Col, Container, Row} from "react-bootstrap";
-import FilterBar from "../components/FilterBar";
-import TicketList from "../components/TicketsList";
+import {Container} from "react-bootstrap";
 import {Context} from "../index";
 import {fetchCities} from "../http/CityApi";
-import {fetchTickets} from "../http/TicketApi";
 import {fetchBasketTickets} from "../http/BasketApi";
 import {observer} from "mobx-react-lite";
 import BasketList from "../components/BasketList";

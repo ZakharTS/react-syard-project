@@ -1,5 +1,4 @@
 import {$authHost, $host} from "./index";
-import jwt_decode from 'jwt-decode';
 
 export const createTicket = async (name, price, departureCityId, arrivalCityId, departureTime, arrivalTime) => {
     try {

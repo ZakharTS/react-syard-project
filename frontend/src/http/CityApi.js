@@ -1,5 +1,4 @@
 import {$authHost, $host} from "./index";
-import jwt_decode from 'jwt-decode';
 
 export const createCity = async (name) => {
     const {data} = await $authHost.post('api/city', {name});

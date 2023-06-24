@@ -1,7 +1,6 @@
 const {body} = require('express-validator');
 
 const registrationValidator = [
-    //body('avatar').optional().isURL(),
     body('name').isLength({min: 5}),
     body('email').isEmail(),
     body('password').isLength({min: 8})

@@ -1,10 +1,9 @@
-import React, {useContext, useEffect, useState} from "react";
-import {Button, Container, Dropdown, Form, FormControl, Modal} from "react-bootstrap";
+import React, {useContext, useState} from "react";
+import {Button, Dropdown, Form, Modal} from "react-bootstrap";
 import DropdownToggle from "react-bootstrap/DropdownToggle";
 import DropdownMenu from "react-bootstrap/DropdownMenu";
 import DropdownItem from "react-bootstrap/DropdownItem";
 import {Context} from "../index";
-import {createCity, fetchCities} from "../http/CityApi";
 import {createTicket} from "../http/TicketApi";
 
 const CreateTicket = ({show, onHide}) => {
@@ -44,7 +43,8 @@ const CreateTicket = ({show, onHide}) => {
                         <DropdownToggle>{departureCity.name || "Город отправления..."}</DropdownToggle>
                         <DropdownMenu>
                             {ticket.cities.map(city =>
-                                <DropdownItem onClick={() => setDepartureCity(city)} key={city.id}>{city.name}</DropdownItem>
+                                <DropdownItem onClick={() => setDepartureCity(city)}
+                                              key={city.id}>{city.name}</DropdownItem>
                             )}
                         </DropdownMenu>
                     </Dropdown>
@@ -54,7 +54,8 @@ const CreateTicket = ({show, onHide}) => {
                         <DropdownToggle>{arrivalCity.name || "Город прибытия..."}</DropdownToggle>
                         <DropdownMenu>
                             {ticket.cities.map(city =>
-                                <DropdownItem onClick={() => setArrivalCity(city)} key={city.id}>{city.name}</DropdownItem>
+                                <DropdownItem onClick={() => setArrivalCity(city)}
+                                              key={city.id}>{city.name}</DropdownItem>
                             )}
                         </DropdownMenu>
                     </Dropdown>

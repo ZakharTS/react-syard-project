@@ -26,10 +26,10 @@ const AppNavbar = observer(() => {
                                     onClick={() => navigate("/admin")}>Админ</Button>
                             <Button variant={"outline-light"} className="m-2"
                                     onClick={() => navigate("/basket")}>Корзина</Button>
-                            <UserProfile />
+                            <UserProfile/>
                             <Button variant={"outline-light"} className="m-2"
                                     onClick={logout}>Выйти</Button>
-                            
+
                         </Nav>
                         :
                         <Nav className="ml-auto">

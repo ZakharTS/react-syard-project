@@ -1,3 +1,4 @@
+*.docx
 # Intellij
 .idea/
 *.iml
